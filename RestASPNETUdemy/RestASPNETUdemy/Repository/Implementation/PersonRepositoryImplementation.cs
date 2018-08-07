@@ -7,7 +7,7 @@ using RestASPNETUdemy.Model.Context;
 using RestASPNETUdemy.Repository;
 
 namespace RestASPNETUdemy.Business.Implementation {
-    public class PersonRepositoryImplementation : IPersonRepository {
+    public class PersonRepositoryImplementation : IRepository {
 
         private MySQLContext _context;
 
