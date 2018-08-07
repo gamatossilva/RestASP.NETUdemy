@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "6aae2bb5feb0b52aa46f98c2189dd65af44edbb3"
+    "signature": "c76f59a215b06102b75ae82bab863beb17d73a7c"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
       "RestASPNETUdemy/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.8",
+          "Microsoft.AspNetCore.Mvc.Versioning": "2.3.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.1"
         },
@@ -1027,6 +1028,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Versioning/2.3.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.ViewFeatures/2.0.4": {
@@ -4495,6 +4507,13 @@
       "sha512": "sha512-ZSZiSTzkcxlWDEcvcp//FNK4onTrwz4YPJ7Pbrmpd9IQ0qR2kvtcuRKRuCIg0JvkHv+swBYeiAX1/I2h9EyHcw==",
       "path": "microsoft.aspnetcore.mvc.taghelpers/2.0.4",
       "hashPath": "microsoft.aspnetcore.mvc.taghelpers.2.0.4.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.Versioning/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fWGeQmLVLmKi4yaScHAQz/tSeLKbYifaNo9et2ljZEV535ysFzgJVw+ZGi2B/6aEDQNPn7yRLfJgXAmy7TipQA==",
+      "path": "microsoft.aspnetcore.mvc.versioning/2.3.0",
+      "hashPath": "microsoft.aspnetcore.mvc.versioning.2.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.ViewFeatures/2.0.4": {
       "type": "package",

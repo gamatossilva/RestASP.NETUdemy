@@ -3,7 +3,8 @@ using RestASPNETUdemy.Model;
 using RestASPNETUdemy.Services;
 
 namespace RestASPNETUdemy.Controllers {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonsController : Controller
     {
 
