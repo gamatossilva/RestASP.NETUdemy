@@ -3,9 +3,9 @@ C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdem
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\bin\Debug\netcoreapp2.0\RestASPNETUdemy.runtimeconfig.dev.json
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\bin\Debug\netcoreapp2.0\RestASPNETUdemy.dll
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\bin\Debug\netcoreapp2.0\RestASPNETUdemy.pdb
-C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.csprojAssemblyReference.cache
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.csproj.CoreCompileInputs.cache
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.AssemblyInfoInputs.cache
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.AssemblyInfo.cs
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.dll
 C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.pdb
+C:\Users\guilh\Documents\Projetos\RestASPNETUdemy\RestASPNETUdemy\RestASPNETUdemy\obj\Debug\netcoreapp2.0\RestASPNETUdemy.csprojAssemblyReference.cache
