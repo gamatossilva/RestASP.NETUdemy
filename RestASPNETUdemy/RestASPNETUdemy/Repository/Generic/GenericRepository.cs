@@ -10,7 +10,7 @@ namespace RestASPNETUdemy.Repository.Generic
 {
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity {
 
-        private readonly MySQLContext _context;
+        protected readonly MySQLContext _context;
         private DbSet<T> dataset;
 
         public GenericRepository(MySQLContext context) {
@@ -51,6 +51,22 @@ namespace RestASPNETUdemy.Repository.Generic
 
         public T FindById(long id) {
             return dataset.SingleOrDefault(p => p.Id.Equals(id));
+        }
+
+        public List<T> FindWithPagedSearch(string query) {
+            return dataset.FromSql<T>(query).ToList();
+        }
+
+        public int GetCount(string query) {
+            var result = "";
+            using (var connection = _context.Database.GetDbConnection()) {
+                connection.Open();
+                using (var command = connection.CreateCommand()) {
+                    command.CommandText = query;
+                    result = command.ExecuteScalar().ToString();
+                }
+            }
+            return Int32.Parse(result);
         }
 
         public T Update(T item) {

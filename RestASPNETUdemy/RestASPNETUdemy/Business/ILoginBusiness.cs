@@ -1,4 +1,5 @@
-﻿using RestASPNETUdemy.Model;
+﻿using RestASPNETUdemy.Data.VO;
+using RestASPNETUdemy.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace RestASPNETUdemy.Business
 {
     public interface ILoginBusiness
     {
-        object FindByLogin(User user);
+        object FindByLogin(UserVO user);
     }
 }

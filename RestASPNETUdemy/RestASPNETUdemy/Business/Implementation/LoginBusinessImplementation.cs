@@ -1,4 +1,5 @@
-﻿using RestASPNETUdemy.Model;
+﻿using RestASPNETUdemy.Data.VO;
+using RestASPNETUdemy.Model;
 using RestASPNETUdemy.Repository;
 using RestASPNETUdemy.Security.Configuration;
 using System;
@@ -23,7 +24,7 @@ namespace RestASPNETUdemy.Business.Implementation
             _tokenConfiguration = tokenConfiguration;
         }
 
-        public object FindByLogin(User user) {
+        public object FindByLogin(UserVO user) {
             bool credentialsIsValid = false;
             if(user != null && !string.IsNullOrWhiteSpace(user.Login)) {
                 var baseUser = _repository.FindByLogin(user.Login);

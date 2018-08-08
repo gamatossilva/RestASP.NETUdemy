@@ -104,7 +104,7 @@ namespace RestASPNETUdemy
             .AddXmlSerializerFormatters();
 
             var filterOptions = new HyperMediaFilterOptions();
-            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            //filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
             //filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
             services.AddSingleton(filterOptions);
 
@@ -121,12 +121,11 @@ namespace RestASPNETUdemy
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
-
             services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
 
             services.AddScoped<IUserRepository, UserRepositoryImplementation>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
-            services.AddScoped<IRepository, PersonRepositoryImplementation>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 

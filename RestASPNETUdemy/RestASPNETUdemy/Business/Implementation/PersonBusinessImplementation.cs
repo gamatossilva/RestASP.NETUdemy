@@ -8,15 +8,16 @@ using RestASPNETUdemy.Model;
 using RestASPNETUdemy.Model.Context;
 using RestASPNETUdemy.Repository;
 using RestASPNETUdemy.Repository.Generic;
+using Tapioca.HATEOAS.Utils;
 
 namespace RestASPNETUdemy.Business.Implementation {
     public class PersonBusinessImplementation : IPersonBusiness {
 
-        private IRepository<Person> _repository;
+        private IPersonRepository _repository;
 
         private readonly PersonConverter _converter;
 
-        public PersonBusinessImplementation(IRepository<Person> repository) {
+        public PersonBusinessImplementation(IPersonRepository repository) {
             _repository = repository;
             _converter = new PersonConverter();
         }
@@ -52,5 +53,35 @@ namespace RestASPNETUdemy.Business.Implementation {
 
         }
 
+        public PagedSearchDTO<PersonVO> FindWithPagedSearch(string name, string sortDirection, int pageSize, int page) {
+            page = page > 0 ? page - 1 : 0;
+            string query = @"select * from Persons p where 1 = 1 ";
+            if (!string.IsNullOrEmpty(name)) {
+                query = query + $" and p.firstName like '%{name}%'";
+            }
+            query = query + $" order by p.firstName {sortDirection} limit {pageSize} offset {page}";
+
+            string countQuery = @"select count(*) from Persons p where 1 = 1 ";
+            if (!string.IsNullOrEmpty(name)) {
+                countQuery = countQuery + $"and p.firstName like '%{name}%'";
+            }
+            
+
+            var persons = _repository.FindWithPagedSearch(query);
+
+            int totalResults = _repository.GetCount(countQuery);
+
+            return new PagedSearchDTO<PersonVO> {
+                CurrentPage = page + 1,
+                List = _converter.ParseList(persons),
+                PageSize = pageSize,
+                SortDirections = sortDirection,
+                TotalResults = totalResults
+            };
+        }
+
+        public List<PersonVO> FindByName(string firstName, string lastName) {
+            return _converter.ParseList(_repository.FindByName(firstName, lastName));
+        }
     }
 }

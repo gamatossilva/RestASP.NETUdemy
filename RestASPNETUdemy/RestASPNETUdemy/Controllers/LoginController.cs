@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestASPNETUdemy.Business;
+using RestASPNETUdemy.Data.VO;
 using RestASPNETUdemy.Model;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace RestASPNETUdemy.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public object Post([FromBody]User user) {
+        public object Post([FromBody]UserVO user) {
             if(user == null) {
                 return BadRequest();
             }

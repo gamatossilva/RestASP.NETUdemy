@@ -27,6 +27,22 @@ namespace RestASPNETUdemy.Controllers {
             return new OkObjectResult(_personBusiness.FindAll());
         }
 
+        [HttpGet("find-by-name")]
+        [Authorize("Bearer")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetByName([FromQuery] string firstName, [FromQuery] string lastName) {
+            return new OkObjectResult(_personBusiness.FindByName(firstName, lastName));
+        }
+
+
+        [HttpGet("find-with-paged-search/{sortDirection}/{pageSize}/{page}")]
+        [Authorize("Bearer")]
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult GetPagedSearch([FromQuery] string name, string sortDirection, int pageSize, int page) {
+            return new OkObjectResult(_personBusiness.FindWithPagedSearch(name, sortDirection, pageSize, page));
+        }
+
+
         // GET api/values/5
         [HttpGet("{id}")]
         [Authorize("Bearer")]
