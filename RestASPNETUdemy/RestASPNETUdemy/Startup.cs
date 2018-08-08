@@ -17,6 +17,8 @@ using RestASPNETUdemy.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using Tapioca.HATEOAS;
 using RestASPNETUdemy.Hypermedia;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestASPNETUdemy
 {
@@ -67,10 +69,18 @@ namespace RestASPNETUdemy
 
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
-            filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
+            //filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
             services.AddSingleton(filterOptions);
 
             services.AddApiVersioning(option => option.ReportApiVersions = true);
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", 
+                    new Info {
+                        Title = "RESTful API with ASP.NET Core 2.0",
+                        Version = "v1"
+                    });
+            });
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
@@ -86,6 +96,17 @@ namespace RestASPNETUdemy
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
+            });
+
+            var option = new RewriteOptions();
+
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
 
             app.UseMvc(routes => {
                 routes.MapRoute(
