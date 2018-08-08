@@ -4,6 +4,7 @@ using RestASPNETUdemy.Business;
 using RestASPNETUdemy.Data.VO;
 using Tapioca.HATEOAS;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestASPNETUdemy.Controllers {
     [ApiVersion("1")]
@@ -19,14 +20,16 @@ namespace RestASPNETUdemy.Controllers {
 
         // GET api/values
         [HttpGet]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return Ok(_personBusiness.FindAll());
+            return new OkObjectResult(_personBusiness.FindAll());
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
@@ -34,22 +37,24 @@ namespace RestASPNETUdemy.Controllers {
             if(person == null) {
                 return NotFound();
             }
-            return Ok(person);
+            return new OkObjectResult(person);
         }
 
         // POST api/values
         [HttpPost]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
             if(person == null) {
                 return BadRequest();
             }
-            return new ObjectResult(_personBusiness.Create(person));
+            return new OkObjectResult(_personBusiness.Create(person));
         }
 
         // PUT api/values/5
         [HttpPut]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody]PersonVO person)
         {
@@ -60,11 +65,12 @@ namespace RestASPNETUdemy.Controllers {
             if(updatedPerson == null) {
                 return BadRequest();
             }
-            return new ObjectResult(_personBusiness.Update(person));
+            return new OkObjectResult(_personBusiness.Update(person));
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {

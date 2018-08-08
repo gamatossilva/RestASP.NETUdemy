@@ -19,6 +19,10 @@ using Tapioca.HATEOAS;
 using RestASPNETUdemy.Hypermedia;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
+using RestASPNETUdemy.Security.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using RestASPNETUdemy.Repository.Implementation;
 
 namespace RestASPNETUdemy
 {
@@ -60,6 +64,38 @@ namespace RestASPNETUdemy
                 }
             }
 
+            var siginConfigurations = new SigninConfigurations();
+            services.AddSingleton(siginConfigurations);
+
+            var tokenConfiguration = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                _configuration.GetSection("TokenConfiguration")).Configure(tokenConfiguration);
+            services.AddSingleton(tokenConfiguration);
+
+            services.AddAuthentication(authOptions => {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions => {
+                var paramsValidation = bearerOptions.TokenValidationParameters;
+                paramsValidation.IssuerSigningKey = siginConfigurations.Key;
+                paramsValidation.ValidAudience = tokenConfiguration.Audience;
+                paramsValidation.ValidIssuer = tokenConfiguration.Issuer;
+
+                paramsValidation.ValidateIssuerSigningKey = true;
+
+                paramsValidation.ValidateLifetime = true;
+
+                paramsValidation.ClockSkew = TimeSpan.Zero;
+            });
+
+            services.AddAuthorization(auth => {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
+           
+
             services.AddMvc(options => {
                 options.RespectBrowserAcceptHeader = true;
                 options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
@@ -85,6 +121,11 @@ namespace RestASPNETUdemy
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
+
+            services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+
+            services.AddScoped<IUserRepository, UserRepositoryImplementation>();
+
             services.AddScoped<IRepository, PersonRepositoryImplementation>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
