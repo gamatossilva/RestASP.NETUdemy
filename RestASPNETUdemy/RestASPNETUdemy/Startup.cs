@@ -14,6 +14,7 @@ using RestASPNETUdemy.Business;
 using RestASPNETUdemy.Business.Implementation;
 using RestASPNETUdemy.Repository;
 using RestASPNETUdemy.Repository.Generic;
+using Microsoft.Net.Http.Headers;
 
 namespace RestASPNETUdemy
 {
@@ -55,7 +56,12 @@ namespace RestASPNETUdemy
                 }
             }
 
-            services.AddMvc();
+            services.AddMvc(options => {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            })
+            .AddXmlSerializerFormatters();
 
             services.AddApiVersioning();
 
