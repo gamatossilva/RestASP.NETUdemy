@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestASPNETUdemy.Model;
 using RestASPNETUdemy.Business;
+using RestASPNETUdemy.Data.VO;
 
 namespace RestASPNETUdemy.Controllers {
     [ApiVersion("1")]
@@ -34,7 +35,7 @@ namespace RestASPNETUdemy.Controllers {
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Person person)
+        public IActionResult Post([FromBody]PersonVO person)
         {
             if(person == null) {
                 return BadRequest();
@@ -44,7 +45,7 @@ namespace RestASPNETUdemy.Controllers {
 
         // PUT api/values/5
         [HttpPut]
-        public IActionResult Put([FromBody]Person person)
+        public IActionResult Put([FromBody]PersonVO person)
         {
             if (person == null) {
                 return BadRequest();

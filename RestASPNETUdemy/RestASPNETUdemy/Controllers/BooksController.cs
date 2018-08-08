@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestASPNETUdemy.Business;
+using RestASPNETUdemy.Data.VO;
 using RestASPNETUdemy.Model;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,7 @@ namespace RestASPNETUdemy.Controllers
 
         [HttpPost]
 
-        public IActionResult Post([FromBody]Book book) {
+        public IActionResult Post([FromBody]BookVO book) {
 
             if (book == null) return BadRequest();
 
@@ -86,7 +87,7 @@ namespace RestASPNETUdemy.Controllers
 
         [HttpPut]
 
-        public IActionResult Put([FromBody]Book book) {
+        public IActionResult Put([FromBody]BookVO book) {
 
             if (book == null) return BadRequest();
 

@@ -1,4 +1,6 @@
-﻿using RestASPNETUdemy.Model;
+﻿using RestASPNETUdemy.Data.Converters;
+using RestASPNETUdemy.Data.VO;
+using RestASPNETUdemy.Model;
 using RestASPNETUdemy.Repository.Generic;
 using System;
 using System.Collections.Generic;
@@ -11,24 +13,35 @@ namespace RestASPNETUdemy.Business.Implementation
     {
         private IRepository<Book> _repository;
 
+        private readonly BookConverter _converter;
+
         public BookBusinessImplementation(IRepository<Book> repository) {
             _repository = repository;
+            _converter = new BookConverter();
         }
 
-        public Book Create(Book book) {
-            return _repository.Create(book);
+        public BookVO Create(BookVO book) {
+            var bookEntity = _converter.Parse(book);
+
+            bookEntity = _repository.Create(bookEntity);
+
+            return _converter.Parse(bookEntity);
         }
 
-        public Book FindById(long id) {
-            return _repository.FindById(id);
+        public BookVO FindById(long id) {
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public List<Book> FindAll() {
-            return _repository.FindAll();
+        public List<BookVO> FindAll() {
+            return _converter.ParseList(_repository.FindAll());
         }
 
-        public Book Update(Book book) {
-            return _repository.Update(book);
+        public BookVO Update(BookVO book) {
+            var bookEntity = _converter.Parse(book);
+
+            bookEntity = _repository.Update(bookEntity);
+
+            return _converter.Parse(bookEntity);
         }
 
         public void Delete(long id) {
