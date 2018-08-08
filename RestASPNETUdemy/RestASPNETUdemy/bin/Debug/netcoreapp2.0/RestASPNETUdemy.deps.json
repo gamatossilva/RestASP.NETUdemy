@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "11b2f13655db2610a9e0325dbb46465f9e441d91"
+    "signature": "18a4bc99ca2f63f0a6a57368885ea78182291b8c"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,8 @@
           "Microsoft.AspNetCore.Mvc.Versioning": "2.3.0",
           "Microsoft.NETCore.App": "2.0.0",
           "MySql.Data": "8.0.12",
-          "Pomelo.EntityFrameworkCore.MySql": "2.1.1"
+          "Pomelo.EntityFrameworkCore.MySql": "2.1.1",
+          "Tapioca.HATEOAS": "1.0.4"
         },
         "runtime": {
           "RestASPNETUdemy.dll": {}
@@ -4126,6 +4127,17 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "Tapioca.HATEOAS/1.0.4": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.1.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/Tapioca.HATEOAS.dll": {}
+        },
+        "compile": {
+          "lib/netcoreapp2.0/Tapioca.HATEOAS.dll": {}
+        }
+      },
       "WindowsAzure.Storage/8.1.4": {
         "dependencies": {
           "Microsoft.Data.OData": "5.8.2",
@@ -6462,6 +6474,13 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Tapioca.HATEOAS/1.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8hp6oNzJV8nbOl6eevAxo0pZsdYIFUng3Pyg0/re47p8e3d0cViG+qmBz3AayrO+CnZ8jqqrkkr264l/8P5QOw==",
+      "path": "tapioca.hateoas/1.0.4",
+      "hashPath": "tapioca.hateoas.1.0.4.nupkg.sha512"
     },
     "WindowsAzure.Storage/8.1.4": {
       "type": "package",

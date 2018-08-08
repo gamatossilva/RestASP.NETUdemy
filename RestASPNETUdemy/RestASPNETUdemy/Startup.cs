@@ -15,6 +15,8 @@ using RestASPNETUdemy.Business.Implementation;
 using RestASPNETUdemy.Repository;
 using RestASPNETUdemy.Repository.Generic;
 using Microsoft.Net.Http.Headers;
+using Tapioca.HATEOAS;
+using RestASPNETUdemy.Hypermedia;
 
 namespace RestASPNETUdemy
 {
@@ -63,7 +65,11 @@ namespace RestASPNETUdemy
             })
             .AddXmlSerializerFormatters();
 
-            services.AddApiVersioning();
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptions);
+
+            services.AddApiVersioning(option => option.ReportApiVersions = true);
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
@@ -80,7 +86,12 @@ namespace RestASPNETUdemy
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "DefaultApi",
+                    template: "{controller=Values}/{id?}"
+                    );
+            });
         }
     }
 }
