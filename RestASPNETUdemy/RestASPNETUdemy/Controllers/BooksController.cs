@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tapioca.HATEOAS;
 
 namespace RestASPNETUdemy.Controllers
 {
@@ -36,6 +37,7 @@ namespace RestASPNETUdemy.Controllers
         //Get sem parâmetros para o FindAll --> Busca Todos
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
 
         public IActionResult Get() {
 
@@ -52,6 +54,7 @@ namespace RestASPNETUdemy.Controllers
         //Get com parâmetros para o FindById --> Busca Por ID
 
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
 
         public IActionResult Get(long id) {
 
@@ -70,6 +73,7 @@ namespace RestASPNETUdemy.Controllers
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
 
         public IActionResult Post([FromBody]BookVO book) {
 
@@ -86,6 +90,7 @@ namespace RestASPNETUdemy.Controllers
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
 
         public IActionResult Put([FromBody]BookVO book) {
 

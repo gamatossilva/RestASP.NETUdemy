@@ -67,6 +67,7 @@ namespace RestASPNETUdemy
 
             var filterOptions = new HyperMediaFilterOptions();
             filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ObjectContentResponseEnricherList.Add(new BookEnricher());
             services.AddSingleton(filterOptions);
 
             services.AddApiVersioning(option => option.ReportApiVersions = true);
