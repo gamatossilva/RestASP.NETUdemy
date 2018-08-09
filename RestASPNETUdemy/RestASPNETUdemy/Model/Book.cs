@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace RestASPNETUdemy.Model
 {
+    [Table("books")]
     public class Book : BaseEntity
     {
         public string Title { get; set; }
