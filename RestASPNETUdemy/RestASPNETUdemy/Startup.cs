@@ -122,6 +122,7 @@ namespace RestASPNETUdemy
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
             services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+            services.AddScoped<IFileBusiness, FileBusinessImplementation>();
 
             services.AddScoped<IUserRepository, UserRepositoryImplementation>();
             services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
